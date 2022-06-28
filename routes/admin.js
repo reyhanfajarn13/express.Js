@@ -4,6 +4,7 @@ const rootDir = require('../utils/path');
 const express = require('express');
 
 const router = express.Router();
+const products = [];
 
 // /admin/user => GET
 router.get('/add-product',(req,res,next)=>{
@@ -13,8 +14,11 @@ router.get('/add-product',(req,res,next)=>{
 
 // /admin/user to /user-input => POST
 router.post('/add-product-input',(req,res,next)=>{
-    console.log(req.body);
-    res.redirect('/');
+    products.push({ title: req.body.title });
+    res.redirect('/shop');
 });
 
-module.exports = router;
+//module.exports = router;
+exports.routes = router;
+exports.products = products;
+
